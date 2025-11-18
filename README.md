@@ -2,7 +2,6 @@
 <html>
   <head>
   	<meta charset = "utf-8">
-  	<title>Nhóm 1 (12V)</title>
   </head>
   <body>
   	<div>
