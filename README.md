@@ -12,27 +12,10 @@
             background-repeat: no-repeat;  /* Không lặp lại */
       }
     </style>
-    <style>
-      .box {
-    width: 250px;
-    padding: 20px;
-    background: white;
-    border-radius: 20px;
-}
-
-.name {
-    margin-top: 15px;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: left;   /* <-- CHỮ LỆCH TRÁI */
-}
-</style>
 <body>
-    <div class="background"></div>
-    <div class="container">
-        <div class="card">
-            <h1 style="text-align:center;text-decorating: none; color:dark blue; padding: 0 30px;">NGUYỄN NGỌC PHƯƠNG DUYÊN</h1>
-            <h2>ỐI SỒI ÔI!</h2>
-            <p>Biệt danh: Trùm canva, Cố, Ơ diêng, Thủ khoa GDQP,...
-            <p>Sở thích: Chơi game, vẽ
-        </div>
+  <div id="banner">
+      <div class="box-left">
+       <h1 style="text-align:center;text-decorating: none; color: white; padding: 0 30px;">NGUYỄN NGỌC PHƯƠNG DUYÊN</h1>
+       <p style="text-align:center;text-decorating: none; color: white; padding: 0 30px;text-align: left;">Biệt danh: Trùm canva, cố, thủ khoa GDQP,...</p>
+        <p style="text-align:center;text-decorating: none; color: white; padding: 0 30px;text-align: left;">Sở thích: Chơi game, vẽ</p>
+      </div>
