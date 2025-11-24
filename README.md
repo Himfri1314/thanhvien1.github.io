@@ -22,12 +22,17 @@
             border: 3px solid #bcdcff;
             margin-bottom: 10px;
             }
-      .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto; /* hoặc margin: 0 auto */
-            width: 300px;       /* tùy chỉnh */
-            }
+  .img-box {
+    width: 400px;
+    height: 300px;        /* khung */
+    display: flex;
+    justify-content: center;  /* giữa ngang */
+    align-items: center;      /* giữa dọc */
+    background: #f5f5f5;
+  }
+  .img-box img {
+    width: 200px;   /* chỉnh kích thước */
+  }
 </style>
 <div class="card">
         <img src="duyen.png" class="avatar">
