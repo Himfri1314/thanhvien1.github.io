@@ -1,0 +1,205 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layla UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Nền phía sau toàn trang -->
+    <div class="background"></div>
+    <header>
+        <style>
+  .avatar {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #bcdcff;
+      margin-bottom: 10px;
+   }
+   full-center {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .full-center img {
+    width: 250px;
+  }
+</style>
+<div class="card">
+        <img src="duyen.png" class="avatar">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Search</a>
+            <a href="#">Message</a>
+        </nav>
+        <div class="buttons">
+            <button class="login">Log in</button>
+            <button class="signup">Sign up</button>
+        </div>
+    </header>
+    <!-- Banner -->
+    <section class="banner">
+        <div class="banner-left">
+            <h1>NGUYỄN NGỌC PHƯƠNG DUYÊN</h1>
+            <p>Tôi không lười, chỉ là rất giỏi trong việc tiết kiệm năng lượng</p>
+            <a class="readmore" href="#">Read More</a>
+        </div>
+        <div class="banner-right">
+            <img src="lung linh.png" alt="">
+        </div>
+    </section>
+    <!-- Artwork + Recent -->
+    <section class="content">
+        <div class="artwork">
+            <h2>Artwork ></h2>
+            <div class="art-list">
+                <div class="art-card"><img src="art1.png"></div>
+                <div class="art-card"><img src="art2.png"></div>
+            </div>
+            <button class="viewmore">View More</button>
+        </div>
+        <div class="recent">
+            <h2>Recent Search</h2>
+            <div class="search-item">Layla ascension material</div>
+            <div class="search-item">Layla build</div>
+            <div class="search-item">Kalpalata lotus locations</div>
+            <div class="search-item">Layla cosplay</div>
+            <div class="search-item">Layla Wallpaper</div>
+        </div>
+        <div class="info">
+            <div class="info-card">
+                <h3>Cryo character</h3>
+                <p>Cryo is one of the seven Elements…</p>
+            </div>
+            <div class="info-card">
+                <h3>Sumeru</h3>
+                <p>Sumeru is one of the seven regions…</p>
+            </div>
+            <div class="info-card">
+                <h3>Akademiya</h3>
+                <p>The Sumeru Akademiya is Sumeru’s main governing body…</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<style>
+    /* ✨ NỀN PHÍA SAU (background image) */
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: url("pd.png"); /* → CHÈN HÌNH NỀN Ở ĐÂY */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: -1;
+}
+/* font + căn tổng thể */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f6f7fb;
+}
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+}
+nav a {
+    margin: 0 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #333;
+}
+.buttons button {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login { background: #e7e7e7; }
+.signup { background: #6e62d4; color: white; }
+/* Banner */
+.banner {
+    margin: 40px auto;
+    width: 90%;
+    background: white;
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.banner-left {
+    width: 45%;
+}
+.banner-left h1 {
+    font-size: 60px;
+    margin: 0;
+    color: #222;
+}
+.banner-left p {
+    font-size: 20px;
+    margin-top: 15px;
+    color: #555;
+}
+.readmore {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #444;
+    font-weight: bold;
+}
+.banner-right img {
+    width: 350px;
+}
+/* Content layout */
+.content {
+    width: 90%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+}
+/* Artwork */
+.art-list {
+    display: flex;
+    gap: 20px;
+}
+.art-card img {
+    width: 140px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.viewmore {
+    margin-top: 10px;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+/* Recent Search */
+.search-item {
+    padding: 12px 20px;
+    margin-top: 10px;
+    background: #e8effa;
+    border-radius: 15px;
+}
+/* Info cards */
+.info-card {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
