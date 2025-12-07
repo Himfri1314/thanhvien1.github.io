@@ -1,216 +1,502 @@
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layla UI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Layla - Genshin Impact Fan Page (Clone)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================================================= */
+        /* STYLES TỔNG QUAN VÀ NỀN */
+        /* ========================================================================= */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* THAY THẾ 'URL_ANH_NEN_CUA_BAN' BẰNG ĐƯỜNG DẪN ẢNH NỀN THỰC TẾ CỦA BẠN */
+            background-image: url('URL_ANH_NEN_CUA_BAN');
+            background-size: cover; /* Đảm bảo ảnh nền bao phủ toàn bộ */
+            background-attachment: fixed; /* Giữ ảnh nền cố định khi cuộn */
+            background-position: center;
+            color: #333; /* Màu chữ cơ bản */
+            min-height: 100vh; /* Đảm bảo body đủ cao để thấy nền */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 50px; /* Thêm khoảng trống dưới cùng */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9); /* Nền trắng trong suốt cho nội dung */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* ========================================================================= */
+        /* HEADER VÀ THANH ĐIỀU HƯỚNG */
+        /* ========================================================================= */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 1200px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        .left-menu > button {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #666;
+            margin-right: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid #5d8eef; /* Màu xanh nổi bật cho Search */
+            font-weight: 600;
+        }
+
+        .auth-buttons button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        .auth-buttons .log-in {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .auth-buttons .sign-up {
+            background-color: #5d8eef; /* Màu xanh lam */
+            color: white;
+        }
+
+        /* ========================================================================= */
+        /* LAYLA BANNER (PHẦN MÀU XANH LỚN) */
+        /* ========================================================================= */
+        .layla-banner {
+            background-color: #304e76; /* Màu xanh đậm */
+            background-image: linear-gradient(to right, #2c4c7c, #486a9a);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            height: 300px; /* Chiều cao cố định */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .genshin-logo {
+            position: absolute;
+            top: 15px;
+            left: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .layla-info {
+            position: relative;
+            z-index: 10;
+            max-width: 50%;
+            padding-left: 30px;
+        }
+
+        .layla-info h1 {
+            font-size: 50px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .layla-info p {
+            font-size: 18px;
+            font-weight: 300;
+            margin: 0 0 20px 0;
+        }
+
+        .layla-info button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .layla-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 45%;
+            background: url('placeholder_layla_full.png') no-repeat right center; /* Thay bằng ảnh Layla */
+            background-size: contain;
+            /* Dùng background tạm thời để mô phỏng vị trí */
+        }
+        
+        .layla-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            max-height: 100%;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 10px 5px;
+            cursor: pointer;
+            z-index: 20;
+        }
+        .carousel-arrow.left { left: 10px; }
+        .carousel-arrow.right { right: 10px; }
+
+        /* ========================================================================= */
+        /* NỘI DUNG CHÍNH (ARTWORK, RECENT SEARCH, THÔNG TIN KHÁC) */
+        /* ========================================================================= */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* ARTWORK */
+        .artwork-section {
+            width: 30%;
+            min-width: 300px;
+        }
+
+        .artwork-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .artwork-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            flex: 1;
+            height: 200px; /* Chiều cao cố định cho ảnh */
+            background-color: #e0e0e0;
+        }
+
+        .artwork-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .artwork-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .view-more-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* RECENT SEARCH */
+        .recent-search-section {
+            width: 35%;
+        }
+
+        .search-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .search-item {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .search-item span {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        /* RIGHT PANEL */
+        .right-panel {
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .character-card {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .char-icon-and-remove {
+            position: relative;
+        }
+
+        .char-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background-color: #ddd; /* Màu tạm */
+            overflow: hidden;
+        }
+
+        .char-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-icon {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .info-card {
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .info-card.cryo {
+            background-color: #e6f7ff; /* Màu xanh băng nhẹ */
+            border-left: 5px solid #66ccff;
+        }
+
+        .info-card.sumeru {
+            background-color: #f0fff0; /* Màu xanh lá nhẹ */
+            border-left: 5px solid #99ff99;
+        }
+
+        .info-card.akademiya {
+            background-color: #fff8e1; /* Màu vàng cát nhẹ */
+            border-left: 5px solid #ffcc66;
+        }
+
+        .info-card-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .info-card.cryo .info-card-icon { background-color: #cceeff; color: #0077b3; }
+        .info-card.sumeru .info-card-icon { background-color: #e0f0e0; color: #339933; }
+        .info-card.akademiya .info-card-icon { background-color: #ffeead; color: #cc9900; }
+
+        .info-text strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .info-text p {
+            font-size: 12px;
+            margin: 0;
+            line-height: 1.4;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Nền phía sau toàn trang -->
-    <div class="background"></div>
-
-    <header>
-        <div class="logo">⭐</div>
-
-        <nav>
+    <div class="header">
+        <div class="left-menu">
+            <button aria-label="Profile">👤</button>
+            <button aria-label="Add">➕</button>
+        </div>
+        <div class="nav-links">
             <a href="#">Home</a>
-            <a href="#">Search</a>
+            <a href="#" class="active">Search</a>
             <a href="#">Message</a>
-        </nav>
-
-        <div class="buttons">
-            <button class="login">Log in</button>
-            <button class="signup">Sign up</button>
         </div>
-    </header>
-
-    <!-- Banner -->
-    <section class="banner">
-        <div class="banner-left">
-            <h1>Layla</h1>
-            <p>She is a student in the Rtawahist Darshan, specializing in Theoretical Astrology.</p>
-            <a class="readmore" href="#">Read More</a>
+        <div class="auth-buttons">
+            <button class="log-in">Log in</button>
+            <button class="sign-up">Sign up</button>
         </div>
+    </div>
 
-        <div class="banner-right">
-            <img src="layla.png" alt="">
-        </div>
-    </section>
-
-    <!-- Artwork + Recent -->
-    <section class="content">
-        <div class="artwork">
-            <h2>Artwork ></h2>
-            <div class="art-list">
-                <div class="art-card"><img src="art1.png"></div>
-                <div class="art-card"><img src="art2.png"></div>
+    <div class="container">
+        
+        <div class="layla-banner">
+            <div class="genshin-logo">
+                <p>GENSHIN IMPACT</p>
             </div>
-            <button class="viewmore">View More</button>
-        </div>
-
-        <div class="recent">
-            <h2>Recent Search</h2>
-
-            <div class="search-item">Layla ascension material</div>
-            <div class="search-item">Layla build</div>
-            <div class="search-item">Kalpalata lotus locations</div>
-            <div class="search-item">Layla cosplay</div>
-            <div class="search-item">Layla Wallpaper</div>
-        </div>
-
-        <div class="info">
-            <div class="info-card">
-                <h3>Cryo character</h3>
-                <p>Cryo is one of the seven Elements…</p>
+            
+            <div class="layla-info">
+                <h1>Layla</h1>
+                <p>She is a student in the Rtawahist Darshan,<br>specializing in **Theoretical Astrology**.</p>
+                <button>Read More</button>
+            </div>
+            
+            <div class="layla-image">
+                 <img src="placeholder_layla_full.png" alt="Layla Character Art"> 
             </div>
 
-            <div class="info-card">
-                <h3>Sumeru</h3>
-                <p>Sumeru is one of the seven regions…</p>
+            <button class="carousel-arrow left" aria-label="Previous Slide"> < </button>
+            <button class="carousel-arrow right" aria-label="Next Slide"> > </button>
+        </div>
+
+        <div class="main-content">
+            
+            <div class="artwork-section">
+                <h2>Artwork ></h2>
+                <div class="artwork-container">
+                    <div class="artwork-item">
+                         <img src="placeholder_layla_artwork_1.png" alt="Layla Artwork 1"> 
+                        <div class="artwork-caption">by @Sukocchi</div>
+                    </div>
+                    <div class="artwork-item">
+                         <img src="placeholder_layla_artwork_2.png" alt="Layla Artwork 2">
+                        <div class="artwork-caption">by @RenChain</div>
+                    </div>
+                </div>
+                <button class="view-more-button">View More</button>
             </div>
 
-            <div class="info-card">
-                <h3>Akademiya</h3>
-                <p>The Sumeru Akademiya is Sumeru’s main governing body…</p>
+            <div class="recent-search-section">
+                <h2>Recent Search</h2>
+                <div class="search-list">
+                    <div class="search-item">🔍<span>Layla ascension material</span></div>
+                    <div class="search-item">🔍<span>Layla build</span></div>
+                    <div class="search-item">🔍<span>Kalpalata lotus locations</span></div>
+                    <div class="search-item">🔍<span>Layla cosplay</span></div>
+                    <div class="search-item">🔍<span>Layla Wallpaper</span></div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                
+                <div class="character-card">
+                    <div class="char-icon-and-remove">
+                        <div class="char-icon">
+                            <img src="placeholder_layla_chibi_1.png" alt="Layla Chibi 1">
+                        </div>
+                        <div class="remove-icon">x</div>
+                    </div>
+                    </div>
+
+                <div class="character-card">
+                    <div class="char-icon-and-remove">
+                        <div class="char-icon">
+                            <img src="placeholder_layla_chibi_2.png" alt="Layla Chibi 2">
+                        </div>
+                        <div class="remove-icon">x</div>
+                    </div>
+                     </div>
+                
+                <div class="info-card cryo">
+                    <div class="info-card-icon">❄️</div>
+                    <div class="info-text">
+                        <strong>Cryo character</strong>
+                        <p>Characters of the element Cryo. Its associated Archon is the Tsaritsa, whose domain is Snezhnaya.</p>
+                    </div>
+                </div>
+
+                <div class="info-card sumeru">
+                    <div class="info-card-icon">🌿</div>
+                    <div class="info-text">
+                        <strong>Sumeru</strong>
+                        <p>Sumeru is one of the seven regions of Teyvat and is ruled by the Dendro Archon, Lesser Lord Kusanali, the Dendro Archon.</p>
+                    </div>
+                </div>
+
+                <div class="info-card akademiya">
+                    <div class="info-card-icon">📖</div>
+                    <div class="info-text">
+                        <strong>Akademiya</strong>
+                        <p>The Sumeru Akademiya is Sumeru's main governing body, as well as the most prestigious institute of Teyvat.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </section>
-    <style>
-        /* ✨ NỀN PHÍA SAU (background image) */
-.background {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-image: url("nen.jpg"); /* → CHÈN HÌNH NỀN Ở ĐÂY */
-    background-size: cover;
-    background-position: center;
-    opacity: 0.3;
-    z-index: -1;
-}
 
-/* font + căn tổng thể */
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #f6f7fb;
-}
-
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 60px;
-}
-
-nav a {
-    margin: 0 20px;
-    font-size: 18px;
-    text-decoration: none;
-    color: #333;
-}
-
-.buttons button {
-    border: none;
-    padding: 10px 25px;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.login { background: #e7e7e7; }
-.signup { background: #6e62d4; color: white; }
-
-/* Banner */
-.banner {
-    margin: 40px auto;
-    width: 90%;
-    background: white;
-    border-radius: 30px;
-    padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    overflow: hidden;
-}
-
-.banner-left {
-    width: 45%;
-}
-
-.banner-left h1 {
-    font-size: 60px;
-    margin: 0;
-    color: #222;
-}
-
-.banner-left p {
-    font-size: 20px;
-    margin-top: 15px;
-    color: #555;
-}
-
-.readmore {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #444;
-    font-weight: bold;
-}
-
-.banner-right img {
-    width: 350px;
-}
-
-/* Content layout */
-.content {
-    width: 90%;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 40px;
-}
-
-/* Artwork */
-.art-list {
-    display: flex;
-    gap: 20px;
-}
-
-.art-card img {
-    width: 140px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 20px;
-}
-
-.viewmore {
-    margin-top: 10px;
-    padding: 12px 30px;
-    border-radius: 25px;
-    border: none;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* Recent Search */
-.search-item {
-    padding: 12px 20px;
-    margin-top: 10px;
-    background: #e8effa;
-    border-radius: 15px;
-}
-
-/* Info cards */
-.info-card {
-    background: white;
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-    </style>
+    </div>
 
 </body>
 </html>
